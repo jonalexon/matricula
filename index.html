@@ -1,1023 +1,1018 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora de Matrícula — Vehículos Nuevos Ecuador</title>
-<style>
-/* === Reset y base === */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Matrícula Vehicular - Ecuador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-:root {
-  --primary: #1a56db;
-  --primary-light: #e8effc;
-  --accent: #f59e0b;
-  --accent-bg: #fef3c7;
-  --success: #059669;
-  --success-bg: #d1fae5;
-  --danger: #dc2626;
-  --gray-50: #f9fafb;
-  --gray-100: #f3f4f6;
-  --gray-200: #e5e7eb;
-  --gray-300: #d1d5db;
-  --gray-500: #6b7280;
-  --gray-700: #374151;
-  --gray-900: #111827;
-  --radius: 10px;
-  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
-  --shadow-lg: 0 4px 16px rgba(0,0,0,.1), 0 8px 32px rgba(0,0,0,.06);
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: var(--gray-50);
-  color: var(--gray-900);
-  line-height: 1.6;
-  min-height: 100vh;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-/* === Layout === */
-.container {
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 24px 16px 48px;
-}
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
 
-header {
-  text-align: center;
-  margin-bottom: 32px;
-  padding: 32px 16px 24px;
-  background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
-  border-radius: var(--radius);
-  color: #fff;
-  box-shadow: var(--shadow-lg);
-}
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-header h1 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 6px;
-  letter-spacing: -0.02em;
-}
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
 
-header p {
-  font-size: 0.9rem;
-  opacity: 0.85;
-}
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
 
-/* === Tarjetas === */
-.card {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 28px 24px;
-  margin-bottom: 20px;
-}
+        @media (min-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
 
-.card h2 {
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: var(--gray-700);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
 
-.card h2 .icon {
-  font-size: 1.3rem;
-}
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
 
-/* === Formulario === */
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-@media (max-width: 560px) {
-  .form-grid { grid-template-columns: 1fr; }
-}
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.95rem;
+        }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
 
-.form-group.full-width {
-  grid-column: 1 / -1;
-}
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
 
-label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--gray-700);
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
+        input:disabled,
+        select:disabled {
+            background: #f5f5f5;
+            cursor: not-allowed;
+        }
 
-label .hint {
-  font-weight: 400;
-  color: var(--gray-500);
-  font-size: 0.75rem;
-}
+        .note {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
 
-input[type="number"],
-select {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1.5px solid var(--gray-200);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  color: var(--gray-900);
-  background: #fff;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  appearance: auto;
-}
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
 
-input[type="number"]:focus,
-select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(26,86,219,.12);
-}
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
 
-input:disabled {
-  background: var(--gray-100);
-  color: var(--gray-500);
-  cursor: not-allowed;
-}
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+        }
 
-.nota {
-  font-size: 0.72rem;
-  color: var(--gray-500);
-  margin-top: 4px;
-  font-style: italic;
-  line-height: 1.4;
-}
+        .advanced-mode {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 8px;
+        }
 
-/* === Checkbox avanzado === */
-.advanced-toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 14px 16px;
-  background: var(--gray-50);
-  border-radius: 8px;
-  border: 1.5px dashed var(--gray-300);
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.2s;
-}
+        .advanced-mode.active {
+            display: block;
+        }
 
-.advanced-toggle:hover {
-  background: var(--gray-100);
-}
+        .advanced-mode h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
 
-.advanced-toggle input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--primary);
-  cursor: pointer;
-}
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
 
-.advanced-toggle span {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--gray-700);
-}
+        .badge-warning {
+            background: #ff9800;
+            color: white;
+        }
 
-/* === Panel avanzado === */
-.advanced-panel {
-  display: none;
-  margin-top: 16px;
-  padding: 20px;
-  background: var(--gray-50);
-  border-radius: 8px;
-  border: 1px solid var(--gray-200);
-}
+        .badge-info {
+            background: #2196F3;
+            color: white;
+        }
 
-.advanced-panel.visible {
-  display: block;
-  animation: fadeIn 0.25s ease;
-}
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
 
-.advanced-panel h3 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--gray-700);
-  margin-bottom: 14px;
-}
+        .btn:active {
+            transform: translateY(0);
+        }
 
-.edit-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
+        .resultado {
+            display: none;
+        }
 
-.edit-row label {
-  min-width: 160px;
-  margin-bottom: 0;
-  font-size: 0.8rem;
-}
+        .resultado.active {
+            display: block;
+        }
 
-.edit-row input[type="number"] {
-  max-width: 130px;
-  padding: 7px 10px;
-  font-size: 0.88rem;
-}
+        .resultado-tabla {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
 
-.edit-row .edit-check {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.72rem;
-  color: var(--gray-500);
-}
+        .resultado-tabla th,
+        .resultado-tabla td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
 
-.edit-row .edit-check input {
-  width: 14px;
-  height: 14px;
-  accent-color: var(--accent);
-}
+        .resultado-tabla th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
 
-/* === Botón calcular === */
-.btn-calcular {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  margin-top: 24px;
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-  letter-spacing: 0.01em;
-}
+        .resultado-tabla tr:last-child {
+            background: #667eea;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
 
-.btn-calcular:hover {
-  background: #1e40af;
-}
+        .resultado-tabla tr:last-child td {
+            border-bottom: none;
+        }
 
-.btn-calcular:active {
-  transform: scale(0.985);
-}
+        .nota-explicativa {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
 
-/* === Resultado === */
-.resultado-panel {
-  display: none;
-}
+        .advertencia {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
 
-.resultado-panel.visible {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
+        footer {
+            margin-top: 40px;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
 
-.alerta {
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  margin-bottom: 16px;
-}
+        footer h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
 
-.alerta-warning {
-  background: var(--accent-bg);
-  color: #92400e;
-  border: 1px solid #fcd34d;
-}
+        footer h3 {
+            color: #764ba2;
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
 
-.alerta-info {
-  background: var(--primary-light);
-  color: #1e40af;
-  border: 1px solid #93c5fd;
-}
+        footer table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
 
-.alerta-success {
-  background: var(--success-bg);
-  color: #065f46;
-  border: 1px solid #6ee7b7;
-}
+        footer table th,
+        footer table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #e0e0e0;
+        }
 
-/* === Tabla de desglose === */
-.tabla-desglose {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
+        footer table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
 
-.tabla-desglose thead th {
-  text-align: left;
-  padding: 10px 12px;
-  background: var(--gray-100);
-  color: var(--gray-700);
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  border-bottom: 2px solid var(--gray-200);
-}
+        footer ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
 
-.tabla-desglose thead th:last-child {
-  text-align: right;
-}
+        .hidden {
+            display: none;
+        }
 
-.tabla-desglose tbody td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--gray-100);
-  vertical-align: middle;
-}
+        .edit-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
 
-.tabla-desglose tbody td:last-child {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-}
+        .edit-toggle input {
+            cursor: pointer;
+        }
 
-.tabla-desglose tbody tr:hover {
-  background: var(--gray-50);
-}
-
-.badge-no-verificado {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 0.68rem;
-  font-weight: 600;
-  background: var(--accent-bg);
-  color: #92400e;
-  padding: 2px 7px;
-  border-radius: 4px;
-  margin-left: 6px;
-  white-space: nowrap;
-}
-
-.tabla-desglose tfoot td {
-  padding: 14px 12px;
-  font-weight: 700;
-  font-size: 1.05rem;
-  border-top: 2.5px solid var(--primary);
-  background: var(--primary-light);
-  color: var(--primary);
-}
-
-.tabla-desglose tfoot td:last-child {
-  text-align: right;
-}
-
-.nota-resultado {
-  font-size: 0.78rem;
-  color: var(--gray-500);
-  margin-top: 12px;
-  padding: 10px 14px;
-  background: var(--gray-50);
-  border-radius: 6px;
-  line-height: 1.5;
-}
-
-/* === Footer === */
-footer {
-  margin-top: 32px;
-  padding: 24px;
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  font-size: 0.76rem;
-  color: var(--gray-500);
-  line-height: 1.7;
-}
-
-footer h4 {
-  font-size: 0.82rem;
-  color: var(--gray-700);
-  margin-bottom: 8px;
-}
-
-footer ul {
-  margin: 6px 0 10px 18px;
-}
-
-footer .fecha-ref {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 3px 10px;
-  background: var(--gray-100);
-  border-radius: 4px;
-  font-weight: 600;
-  color: var(--gray-700);
-}
-
-/* === Utilidades === */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-}
-</style>
+        .edit-toggle label {
+            margin: 0;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>🚗 Calculadora de Matrícula Vehicular</h1>
+            <p>Vehículos nuevos en Ecuador - Septiembre 2026</p>
+        </header>
 
-<div class="container">
+        <div class="main-content">
+            <div class="card">
+                <h2>Datos del Vehículo</h2>
+                
+                <div class="form-group">
+                    <label for="precio_venta">Precio de Venta (USD) - Referencial</label>
+                    <input type="number" id="precio_venta" placeholder="Ej: 25000" min="0" step="0.01">
+                    <div class="note">Solo para referencia visual, no interviene en el cálculo</div>
+                </div>
 
-  <header>
-    <h1>🚗 Calculadora de Matrícula Vehicular</h1>
-    <p>Vehículos nuevos — Ecuador</p>
-  </header>
+                <div class="form-group">
+                    <label for="avaluo_sri">Avalúo SRI (USD) *</label>
+                    <input type="number" id="avaluo_sri" placeholder="Ej: 22000" min="0" step="0.01" required>
+                    <div class="note">Se obtiene de la factura del concesionario o consulta en portal SRI</div>
+                </div>
 
-  <!-- Formulario principal -->
-  <div class="card">
-    <h2><span class="icon">📋</span> Datos del vehículo</h2>
+                <div class="form-group">
+                    <label for="tipo_propulsion">Tipo de Propulsión *</label>
+                    <select id="tipo_propulsion" required>
+                        <option value="">Seleccione...</option>
+                        <option value="combustion">Combustión (gasolina/diésel)</option>
+                        <option value="hibrido">Híbrido no enchufable (HEV)</option>
+                        <option value="phev">Híbrido enchufable (PHEV)</option>
+                        <option value="electrico">Eléctrico 100% (EV)</option>
+                    </select>
+                </div>
 
-    <form id="formMatricula" autocomplete="off">
-      <div class="form-grid">
+                <div class="form-group" id="cilindraje_group" style="display:none;">
+                    <label for="cilindraje_cc">Cilindraje (cc) *</label>
+                    <input type="number" id="cilindraje_cc" placeholder="Ej: 1800" min="0" step="1">
+                    <div class="note">Obligatorio para híbridos. Determina si aplica descuento del 50% en IPVM</div>
+                </div>
 
-        <div class="form-group">
-          <label for="precioVenta">Precio de venta <span class="hint">(USD, referencial)</span></label>
-          <input type="number" id="precioVenta" min="0" step="0.01" placeholder="Ej: 25000">
-          <span class="nota">Solo referencia visual, no interviene en el cálculo.</span>
+                <div class="form-group">
+                    <label for="mes_compra">Mes de Compra *</label>
+                    <select id="mes_compra" required>
+                        <option value="">Seleccione...</option>
+                        <option value="1">Enero</option>
+                        <option value="2">Febrero</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Abril</option>
+                        <option value="5">Mayo</option>
+                        <option value="6">Junio</option>
+                        <option value="7">Julio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo_uso">Tipo de Uso *</label>
+                    <select id="tipo_uso" required>
+                        <option value="">Seleccione...</option>
+                        <option value="particular">Particular</option>
+                        <option value="publico">Público/Comercial</option>
+                        <option value="moto">Motocicleta</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="provincia_ciudad">Ciudad/Provincia *</label>
+                    <select id="provincia_ciudad" required>
+                        <option value="">Seleccione...</option>
+                        <option value="quito">Quito (Distrito Metropolitano)</option>
+                        <option value="ruminahui">Rumiñahui</option>
+                        <option value="guayaquil">Guayaquil</option>
+                        <option value="cuenca">Cuenca</option>
+                        <option value="ambato">Ambato</option>
+                        <option value="ibarra">Ibarra</option>
+                        <option value="riobamba">Riobamba</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="modo_avanzado">
+                    <label for="modo_avanzado">Modo avanzado (editar valores manualmente)</label>
+                </div>
+
+                <div class="advanced-mode" id="advanced_panel">
+                    <h3>⚙️ Configuración Avanzada</h3>
+                    
+                    <div class="form-group">
+                        <label for="ant_manual">Tasa ANT (USD) <span class="badge badge-warning">⚠ No verificado</span></label>
+                        <input type="number" id="ant_manual" step="0.01" min="0">
+                        <div class="edit-toggle">
+                            <input type="checkbox" id="editar_ant">
+                            <label for="editar_ant">Editar manualmente</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sppat_manual">SPPAT (USD) <span class="badge badge-warning">⚠ No verificado</span></label>
+                        <input type="number" id="sppat_manual" step="0.01" min="0">
+                        <div class="edit-toggle">
+                            <input type="checkbox" id="editar_sppat">
+                            <label for="editar_sppat">Editar manualmente</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rtv_manual">RTV - Revisión Técnica (USD)</label>
+                        <input type="number" id="rtv_manual" step="0.01" min="0">
+                        <div class="edit-toggle">
+                            <input type="checkbox" id="editar_rtv">
+                            <label for="editar_rtv">Editar manualmente</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rodaje_manual">Rodaje Municipal (USD)</label>
+                        <input type="number" id="rodaje_manual" step="0.01" min="0">
+                        <div class="edit-toggle">
+                            <input type="checkbox" id="editar_rodaje">
+                            <label for="editar_rodaje">Editar manualmente</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fondo_vial_manual">Fondo Vial (USD)</label>
+                        <input type="number" id="fondo_vial_manual" step="0.01" min="0">
+                        <div class="edit-toggle">
+                            <input type="checkbox" id="editar_fondo_vial">
+                            <label for="editar_fondo_vial">Editar manualmente</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tasa_municipal_manual">Tasa Municipal (USD)</label>
+                        <input type="number" id="tasa_municipal_manual" step="0.01" min="0">
+                        <div class="edit-toggle">
+                            <input type="checkbox" id="editar_tasa_municipal">
+                            <label for="editar_tasa_municipal">Editar manualmente</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="calcularMatricula()">Calcular Matrícula</button>
+            </div>
+
+            <div class="card resultado" id="resultado_card">
+                <h2>📊 Resultado del Cálculo</h2>
+                <div id="resultado_contenido"></div>
+            </div>
         </div>
 
-        <div class="form-group">
-          <label for="avaluoSRI">Avalúo SRI <span class="hint">(USD)</span></label>
-          <input type="number" id="avaluoSRI" min="0" step="0.01" placeholder="Ej: 22000" required>
-          <span class="nota">Este valor se obtiene de la factura del concesionario o de la consulta de vehículos en el portal del SRI.</span>
-        </div>
-
-        <div class="form-group">
-          <label for="mesCompra">Mes de compra</label>
-          <select id="mesCompra" required>
-            <option value="">— Seleccionar —</option>
-            <option value="1">Enero</option>
-            <option value="2">Febrero</option>
-            <option value="3">Marzo</option>
-            <option value="4">Abril</option>
-            <option value="5">Mayo</option>
-            <option value="6">Junio</option>
-            <option value="7">Julio</option>
-            <option value="8">Agosto</option>
-            <option value="9">Septiembre</option>
-            <option value="10">Octubre</option>
-            <option value="11">Noviembre</option>
-            <option value="12">Diciembre</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="tipoVehiculo">Tipo de vehículo</label>
-          <select id="tipoVehiculo" required>
-            <option value="">— Seleccionar —</option>
-            <option value="particular">Particular (liviano)</option>
-            <option value="publico">Público</option>
-            <option value="moto">Motocicleta</option>
-            <option value="electrico">Eléctrico</option>
-          </select>
-        </div>
-
-        <div class="form-group full-width">
-          <label for="ciudad">Provincia / Ciudad</label>
-          <select id="ciudad" required>
-            <option value="">— Seleccionar —</option>
-            <option value="quito">Quito</option>
-            <option value="ruminahui">Rumiñahui</option>
-            <option value="guayaquil">Guayaquil</option>
-            <option value="cuenca">Cuenca</option>
-            <option value="ambato">Ambato</option>
-            <option value="ibarra">Ibarra</option>
-            <option value="riobamba">Riobamba</option>
-          </select>
-        </div>
-
-      </div>
-
-      <!-- Modo avanzado -->
-      <label class="advanced-toggle" for="chkAvanzado">
-        <input type="checkbox" id="chkAvanzado">
-        <span>⚙️ Modo avanzado — editar valores manualmente</span>
-      </label>
-
-      <div class="advanced-panel" id="panelAvanzado">
-        <h3>Sobrescribir valores por concepto</h3>
-        <p style="font-size:0.78rem;color:var(--gray-500);margin-bottom:14px;">
-          Marca la casilla «Editar» junto a cada concepto para habilitar la modificación manual.
-        </p>
-
-        <div class="edit-row">
-          <label>Rodaje municipal ($)</label>
-          <input type="number" id="advRodaje" min="0" step="0.01" disabled>
-          <div class="edit-check">
-            <input type="checkbox" id="chkRodaje" data-target="advRodaje">
-            <span>Editar</span>
-          </div>
-        </div>
-
-        <div class="edit-row">
-          <label>Fondo vial ($)</label>
-          <input type="number" id="advFondoVial" min="0" step="0.01" disabled>
-          <div class="edit-check">
-            <input type="checkbox" id="chkFondoVial" data-target="advFondoVial">
-            <span>Editar</span>
-          </div>
-        </div>
-
-        <div class="edit-row">
-          <label>SPPAT ($)</label>
-          <input type="number" id="advSPPAT" min="0" step="0.01" disabled>
-          <div class="edit-check">
-            <input type="checkbox" id="chkSPPAT" data-target="advSPPAT">
-            <span>Editar</span>
-          </div>
-        </div>
-
-        <div class="edit-row">
-          <label>ANT placas ($)</label>
-          <input type="number" id="advAntPlacas" min="0" step="0.01" disabled>
-          <div class="edit-check">
-            <input type="checkbox" id="chkAntPlacas" data-target="advAntPlacas">
-            <span>Editar</span>
-          </div>
-        </div>
-
-        <div class="edit-row">
-          <label>Adhesivo RTV ($)</label>
-          <input type="number" id="advAdhesivo" min="0" step="0.01" disabled>
-          <div class="edit-check">
-            <input type="checkbox" id="chkAdhesivo" data-target="advAdhesivo">
-            <span>Editar</span>
-          </div>
-        </div>
-
-        <div class="edit-row">
-          <label>Tasa municipal ($)</label>
-          <input type="number" id="advTasaMunicipal" min="0" step="0.01" disabled>
-          <div class="edit-check">
-            <input type="checkbox" id="chkTasaMunicipal" data-target="advTasaMunicipal">
-            <span>Editar</span>
-          </div>
-        </div>
-      </div>
-
-      <button type="submit" class="btn-calcular">Calcular matrícula</button>
-    </form>
-  </div>
-
-  <!-- Panel de resultado -->
-  <div class="card resultado-panel" id="resultadoPanel">
-    <h2><span class="icon">📊</span> Desglose de matrícula</h2>
-    <div id="resultadoContenido"></div>
-  </div>
-
-  <!-- Pie de página informativo -->
-  <footer>
-    <h4>⚠️ Avisos importantes</h4>
-    <ul>
-      <li>Esta calculadora aplica <strong>exclusivamente a vehículos nuevos</strong> en Ecuador. No incluye multas, RTV vencida ni renovación de matrículas de vehículos usados.</li>
-      <li>Los valores de <strong>ANT placas</strong> y <strong>rodaje municipal</strong> fuera de Quito/Rumiñahui deben confirmarse contra el tarifario oficial vigente antes de usarse para un pago real.</li>
-    </ul>
-
-    <h4>📚 Fuentes de referencia</h4>
-    <ul>
-      <li><strong>SRI</strong> — Tabla de Impuesto a la Propiedad de Vehículos Motorizados (IPVM).</li>
-      <li><strong>ANT / AMT</strong> — Servicio de Protección Pública y Accidentes de Tránsito (SPPAT) y costo de placas.</li>
-      <li><strong>Prefectura de Pichincha</strong> — Fondo vial provincial.</li>
-      <li><strong>Ordenanzas municipales</strong> — Rodaje municipal, adhesivo RTV y tasa municipal de cada ciudad.</li>
-    </ul>
-
-    <span class="fecha-ref">📅 Fecha de referencia de los datos: septiembre 2026</span>
-  </footer>
-
-</div>
-
-<script>
-// ============================================================
-// CONFIG — Datos de configuración tributaria para matrícula
-// de vehículos nuevos en Ecuador.
-// ============================================================
-const CONFIG = {
-  ipvm_tabla: [
-    {desde: 0,     hasta: 4000,  fraccion_basica: 0,   pct: 0.005},
-    {desde: 4001,  hasta: 8000,  fraccion_basica: 20,  pct: 0.01},
-    {desde: 8001,  hasta: 12000, fraccion_basica: 60,  pct: 0.02},
-    {desde: 12001, hasta: 16000, fraccion_basica: 140, pct: 0.03},
-    {desde: 16001, hasta: 20000, fraccion_basica: 260, pct: 0.04},
-    {desde: 20001, hasta: 24000, fraccion_basica: 420, pct: 0.05},
-    {desde: 24001, hasta: null,  fraccion_basica: 620, pct: 0.06}
-  ],
-  rodaje_tabla: [
-    {desde: 0,     hasta: 1000,  valor: 0},
-    {desde: 1001,  hasta: 4000,  valor: 5},
-    {desde: 4001,  hasta: 8000,  valor: 10},
-    {desde: 8001,  hasta: 12000, valor: 15},
-    {desde: 12001, hasta: 16000, valor: 20},
-    {desde: 16001, hasta: 20000, valor: 25},
-    {desde: 20001, hasta: 24000, valor: 30},
-    {desde: 24001, hasta: 40000, valor: 50},
-    {desde: 40001, hasta: null,  valor: 70}
-  ],
-  sppat: {particular: 57.16, moto: 47.50},
-  electrico: {matricula_fija: 10},
-  ciudades: {
-    quito:      {provincia: "Pichincha",  fondo_vial: {particular:18.00, publico:20.50, moto:9.30}, ant_placas: {vehiculo:34.00, moto:17.00, verificado:false}, adhesivo_rtv:6.80, tasa_municipal:{liviano:3.80, moto:2.80}},
-    ruminahui:  {provincia: "Pichincha",  fondo_vial: {particular:18.00, publico:20.50, moto:9.30}, ant_placas: {vehiculo:34.00, moto:17.00, verificado:false}, adhesivo_rtv:6.80, tasa_municipal:{liviano:3.80, moto:2.80}},
-    guayaquil:  {provincia: "Guayas",     fondo_vial: {particular:0,     publico:0,     moto:0},    ant_placas: {vehiculo:23.00, moto:13.00, verificado:false}, adhesivo_rtv:6.80, tasa_municipal:{liviano:3.80, moto:2.80}},
-    cuenca:     {provincia: "Azuay",      fondo_vial: {particular:0,     publico:0,     moto:0},    ant_placas: {vehiculo:23.00, moto:13.00, verificado:false}, adhesivo_rtv:6.80, tasa_municipal:{liviano:3.80, moto:2.80}},
-    ambato:     {provincia: "Tungurahua", fondo_vial: {particular:0,     publico:0,     moto:0},    ant_placas: {vehiculo:23.00, moto:13.00, verificado:false}, adhesivo_rtv:6.80, tasa_municipal:{liviano:3.80, moto:2.80}},
-    ibarra:     {provincia: "Imbabura",   fondo_vial: {particular:0,     publico:0,     moto:0},    ant_placas: {vehiculo:23.00, moto:13.00, verificado:false}, adhesivo_rtv:6.80, tasa_municipal:{liviano:3.80, moto:2.80}},
-    riobamba:   {provincia: "Chimborazo", fondo_vial: {particular:12.00, publico:12.00, moto:12.00},ant_placas: {vehiculo:23.00, moto:13.00, verificado:false}, adhesivo_rtv:6.80, tasa_municipal:{liviano:3.80, moto:2.80}}
-  }
-};
-
-// ============================================================
-// Referencias DOM
-// ============================================================
-const $ = (id) => document.getElementById(id);
-
-const form = $('formMatricula');
-const elAvaluo = $('avaluoSRI');
-const elMes = $('mesCompra');
-const elTipo = $('tipoVehiculo');
-const elCiudad = $('ciudad');
-const elChkAvanzado = $('chkAvanzado');
-const elPanelAvanzado = $('panelAvanzado');
-const elResultado = $('resultadoPanel');
-const elResultadoContenido = $('resultadoContenido');
-
-// Campos avanzados
-const advFields = {
-  rodaje:        { input: $('advRodaje'),        chk: $('chkRodaje') },
-  fondoVial:     { input: $('advFondoVial'),      chk: $('chkFondoVial') },
-  sppat:         { input: $('advSPPAT'),          chk: $('chkSPPAT') },
-  antPlacas:     { input: $('advAntPlacas'),      chk: $('chkAntPlacas') },
-  adhesivo:      { input: $('advAdhesivo'),       chk: $('chkAdhesivo') },
-  tasaMunicipal: { input: $('advTasaMunicipal'),  chk: $('chkTasaMunicipal') }
-};
-
-// ============================================================
-// Lógica modo avanzado: habilitar/deshabilitar campos
-// ============================================================
-elChkAvanzado.addEventListener('change', function() {
-  elPanelAvanzado.classList.toggle('visible', this.checked);
-  // Si se desmarca, deshabilitar todo y desmarcar checks individuales
-  if (!this.checked) {
-    Object.values(advFields).forEach(f => {
-      f.chk.checked = false;
-      f.input.disabled = true;
-    });
-  }
-});
-
-// Cada checkbox individual habilita su campo correspondiente
-Object.values(advFields).forEach(f => {
-  f.chk.addEventListener('change', function() {
-    f.input.disabled = !this.checked;
-    if (!this.checked) f.input.value = '';
-  });
-});
-
-// ============================================================
-// Al cambiar ciudad: autocompletar campos avanzados con valores
-// de CONFIG.ciudades (solo lectura, deshabilitados salvo edición manual)
-// ============================================================
-elCiudad.addEventListener('change', function() {
-  const ciudadKey = this.value;
-  if (!ciudadKey || !CONFIG.ciudades[ciudadKey]) return;
-
-  const ciudad = CONFIG.ciudades[ciudadKey];
-  const tipo = elTipo.value || 'particular';
-
-  // Rodaje: se calcula con avaluo actual si existe
-  const avaluo = parseFloat(elAvaluo.value) || 0;
-  const rodajeVal = calcularRodaje(avaluo, CONFIG.rodaje_tabla);
-  if (!advFields.rodaje.chk.checked) {
-    advFields.rodaje.input.value = rodajeVal.toFixed(2);
-    advFields.rodaje.input.disabled = true;
-  }
-
-  // Fondo vial según tipo
-  const fvKey = (tipo === 'moto') ? 'moto' : (tipo === 'publico' ? 'publico' : 'particular');
-  const fvVal = ciudad.fondo_vial[fvKey] || 0;
-  if (!advFields.fondoVial.chk.checked) {
-    advFields.fondoVial.input.value = fvVal.toFixed(2);
-    advFields.fondoVial.input.disabled = true;
-  }
-
-  // SPPAT
-  const sppatVal = (tipo === 'moto') ? CONFIG.sppat.moto : CONFIG.sppat.particular;
-  // Para público se usa particular como referencia // TODO: verificar si público tiene SPPAT diferenciado
-  const sppatFinal = (tipo === 'electrico') ? 0 : sppatVal;
-  if (!advFields.sppat.chk.checked) {
-    advFields.sppat.input.value = sppatFinal.toFixed(2);
-    advFields.sppat.input.disabled = true;
-  }
-
-  // ANT placas
-  const placasKey = (tipo === 'moto') ? 'moto' : 'vehiculo';
-  const placasVal = ciudad.ant_placas[placasKey] || 0;
-  if (!advFields.antPlacas.chk.checked) {
-    advFields.antPlacas.input.value = placasVal.toFixed(2);
-    advFields.antPlacas.input.disabled = true;
-  }
-
-  // Adhesivo RTV
-  if (!advFields.adhesivo.chk.checked) {
-    advFields.adhesivo.input.value = ciudad.adhesivo_rtv.toFixed(2);
-    advFields.adhesivo.input.disabled = true;
-  }
-
-  // Tasa municipal
-  const tasaKey = (tipo === 'moto') ? 'moto' : 'liviano';
-  const tasaVal = ciudad.tasa_municipal[tasaKey] || 0;
-  if (!advFields.tasaMunicipal.chk.checked) {
-    advFields.tasaMunicipal.input.value = tasaVal.toFixed(2);
-    advFields.tasaMunicipal.input.disabled = true;
-  }
-});
-
-// También actualizar al cambiar tipo de vehículo
-elTipo.addEventListener('change', function() {
-  if (elCiudad.value) {
-    // Disparar actualización de campos avanzados
-    elCiudad.dispatchEvent(new Event('change'));
-  }
-});
-
-// Actualizar rodaje al cambiar avaluo
-elAvaluo.addEventListener('input', function() {
-  if (elCiudad.value && !advFields.rodaje.chk.checked) {
-    const avaluo = parseFloat(this.value) || 0;
-    advFields.rodaje.input.value = calcularRodaje(avaluo, CONFIG.rodaje_tabla).toFixed(2);
-  }
-});
-
-// ============================================================
-// FUNCIONES DE CÁLCULO
-// ============================================================
-
-/**
- * Calcula el IPVM anual según la tabla progresiva del SRI.
- * Fórmula: fraccion_basica + (avaluo - desde) * pct
- */
-function calcularIPVM(avaluo) {
-  if (!avaluo || isNaN(avaluo) || avaluo <= 0) return 0;
-  const tabla = CONFIG.ipvm_tabla;
-  for (let i = 0; i < tabla.length; i++) {
-    const tramo = tabla[i];
-    const hasta = tramo.hasta === null ? Infinity : tramo.hasta;
-    if (avaluo >= tramo.desde && avaluo <= hasta) {
-      return tramo.fraccion_basica + (avaluo - tramo.desde) * tramo.pct;
-    }
-  }
-  return 0;
-}
-
-/**
- * Prorratea el IPVM anual según el mes de compra.
- * Meses 1-3: 100% del valor.
- * Meses 4-12: factor (12 - mes + 1) / 12.
- */
-function prorratearIPVM(ipvmAnual, mesCompra) {
-  if (!ipvmAnual || isNaN(ipvmAnual)) return 0;
-  if (!mesCompra || isNaN(mesCompra)) return 0;
-  if (mesCompra <= 3) return ipvmAnual;
-  const factor = (12 - mesCompra + 1) / 12;
-  return ipvmAnual * factor;
-}
-
-/**
- * Calcula el rodaje municipal según la tabla de rangos de avalúo.
- * Devuelve el valor fijo del tramo correspondiente.
- */
-function calcularRodaje(avaluo, tablaRodaje) {
-  if (!avaluo || isNaN(avaluo) || avaluo < 0) return 0;
-  if (!tablaRodaje) return 0;
-  for (let i = 0; i < tablaRodaje.length; i++) {
-    const tramo = tablaRodaje[i];
-    const hasta = tramo.hasta === null ? Infinity : tramo.hasta;
-    if (avaluo >= tramo.desde && avaluo <= hasta) {
-      return tramo.valor;
-    }
-  }
-  return 0;
-}
-
-/**
- * Calcula el total de matrícula desglosado por concepto.
- * Si el vehículo es eléctrico, retorna directamente $10 fijo.
- */
-function calcularTotal(datos) {
-  const { avaluo, mesCompra, tipo, ciudadKey } = datos;
-
-  // Validaciones básicas
-  if (!avaluo || isNaN(avaluo) || avaluo <= 0) return null;
-  if (!mesCompra || isNaN(mesCompra)) return null;
-  if (!tipo) return null;
-  if (!ciudadKey || !CONFIG.ciudades[ciudadKey]) return null;
-
-  // Caso eléctrico: matrícula fija de $10
-  if (tipo === 'electrico') {
-    return {
-      esElectrico: true,
-      total: CONFIG.electrico.matricula_fija,
-      conceptos: [
-        { nombre: 'Matrícula vehículo eléctrico (valor fijo)', valor: CONFIG.electrico.matricula_fija, verificado: true }
-      ]
-    };
-  }
-
-  const ciudad = CONFIG.ciudades[ciudadKey];
-  const conceptos = [];
-  let total = 0;
-
-  // 1. IPVM prorrateado
-  const ipvmAnual = calcularIPVM(avaluo);
-  const ipvmProrrateado = prorratearIPVM(ipvmAnual, mesCompra);
-  conceptos.push({ nombre: 'IPVM (prorrateado)', valor: ipvmProrrateado, verificado: true });
-  total += ipvmProrrateado;
-
-  // 2. Rodaje municipal
-  let rodajeVal;
-  if (elChkAvanzado.checked && advFields.rodaje.chk.checked) {
-    rodajeVal = parseFloat(advFields.rodaje.input.value) || 0;
-  } else {
-    rodajeVal = calcularRodaje(avaluo, CONFIG.rodaje_tabla);
-  }
-  conceptos.push({ nombre: 'Rodaje municipal', valor: rodajeVal, verificado: true });
-  total += rodajeVal;
-
-  // 3. Fondo vial (según tipo de vehículo)
-  let fondoVialVal;
-  if (elChkAvanzado.checked && advFields.fondoVial.chk.checked) {
-    fondoVialVal = parseFloat(advFields.fondoVial.input.value) || 0;
-  } else {
-    const fvKey = (tipo === 'moto') ? 'moto' : (tipo === 'publico' ? 'publico' : 'particular');
-    fondoVialVal = ciudad.fondo_vial[fvKey] || 0;
-  }
-  conceptos.push({ nombre: 'Fondo vial', valor: fondoVialVal, verificado: true });
-  total += fondoVialVal;
-
-  // 4. SPPAT — Servicio de Protección Pública y Accidentes de Tránsito
-  let sppatVal;
-  if (elChkAvanzado.checked && advFields.sppat.chk.checked) {
-    sppatVal = parseFloat(advFields.sppat.input.value) || 0;
-  } else {
-    sppatVal = (tipo === 'moto') ? CONFIG.sppat.moto : CONFIG.sppat.particular;
-    // TODO: verificar si tipo público tiene SPPAT diferenciado
-  }
-  conceptos.push({ nombre: 'SPPAT', valor: sppatVal, verificado: true });
-  total += sppatVal;
-
-  // 5. ANT placas
-  let placasVal;
-  const placasVerificado = ciudad.ant_placas.verificado;
-  if (elChkAvanzado.checked && advFields.antPlacas.chk.checked) {
-    placasVal = parseFloat(advFields.antPlacas.input.value) || 0;
-  } else {
-    const placasKey = (tipo === 'moto') ? 'moto' : 'vehiculo';
-    placasVal = ciudad.ant_placas[placasKey] || 0;
-  }
-  conceptos.push({ nombre: 'ANT — Placas', valor: placasVal, verificado: placasVerificado });
-  total += placasVal;
-
-  // 6. Adhesivo RTV
-  let adhesivoVal;
-  if (elChkAvanzado.checked && advFields.adhesivo.chk.checked) {
-    adhesivoVal = parseFloat(advFields.adhesivo.input.value) || 0;
-  } else {
-    adhesivoVal = ciudad.adhesivo_rtv || 0;
-  }
-  conceptos.push({ nombre: 'Adhesivo RTV', valor: adhesivoVal, verificado: true });
-  total += adhesivoVal;
-
-  // 7. Tasa municipal
-  let tasaVal;
-  if (elChkAvanzado.checked && advFields.tasaMunicipal.chk.checked) {
-    tasaVal = parseFloat(advFields.tasaMunicipal.input.value) || 0;
-  } else {
-    const tasaKey = (tipo === 'moto') ? 'moto' : 'liviano';
-    tasaVal = ciudad.tasa_municipal[tasaKey] || 0;
-  }
-  conceptos.push({ nombre: 'Tasa municipal', valor: tasaVal, verificado: true });
-  total += tasaVal;
-
-  return {
-    esElectrico: false,
-    total: total,
-    conceptos: conceptos
-  };
-}
-
-// ============================================================
-// Renderizar resultado en el DOM
-// ============================================================
-function renderResultado(resultado, datos) {
-  let html = '';
-
-  // Verificar si hay campos vacíos o inválidos
-  const camposInvalidos = [];
-  if (!datos.avaluo || isNaN(datos.avaluo) || datos.avaluo <= 0) camposInvalidos.push('Avalúo SRI');
-  if (!datos.mesCompra || isNaN(datos.mesCompra)) camposInvalidos.push('Mes de compra');
-  if (!datos.tipo) camposInvalidos.push('Tipo de vehículo');
-  if (!datos.ciudadKey) camposInvalidos.push('Ciudad');
-
-  if (camposInvalidos.length > 0) {
-    html += `<div class="alerta alerta-warning">⚠️ Complete los campos obligatorios: ${camposInvalidos.join(', ')}.</div>`;
-    elResultadoContenido.innerHTML = html;
-    elResultado.classList.add('visible');
-    return;
-  }
-
-  // Si es eléctrico, mostrar nota especial
-  if (resultado.esElectrico) {
-    html += `<div class="alerta alerta-info">ℹ️ Los vehículos eléctricos en Ecuador pagan una matrícula fija de <strong>$${resultado.total.toFixed(2)}</strong> según la normativa vigente.</div>`;
-  }
-
-  // Verificar si hay conceptos no verificados
-  const noVerificados = resultado.conceptos.filter(c => !c.verificado);
-  if (noVerificados.length > 0) {
-    html += `<div class="alerta alerta-warning">⚠️ Uno o más conceptos no están verificados. Confirme los valores con la fuente oficial local antes de realizar el pago.</div>`;
-  }
-
-  // Tabla de desglose
-  const ciudadNombre = elCiudad.options[elCiudad.selectedIndex].text;
-  const provincia = CONFIG.ciudades[datos.ciudadKey].provincia;
-
-  html += `<p style="font-size:0.85rem;color:var(--gray-500);margin-bottom:14px;">
-    <strong>Ciudad:</strong> ${ciudadNombre} (${provincia}) &nbsp;|&nbsp;
-    <strong>Tipo:</strong> ${elTipo.options[elTipo.selectedIndex].text} &nbsp;|&nbsp;
-    <strong>Mes:</strong> ${elMes.options[elMes.selectedIndex].text} &nbsp;|&nbsp;
-    <strong>Avalúo:</strong> $${datos.avaluo.toLocaleString('en-US', {minimumFractionDigits:2})}
-  </p>`;
-
-  html += `<table class="tabla-desglose">
-    <thead>
-      <tr><th>Concepto</th><th>Valor (USD)</th></tr>
-    </thead>
-    <tbody>`;
-
-  resultado.conceptos.forEach(c => {
-    const badge = !c.verificado
-      ? `<span class="badge-no-verificado">⚠ No verificado</span>`
-      : '';
-    html += `<tr>
-      <td>${c.nombre}${badge}</td>
-      <td>$${c.valor.toFixed(2)}</td>
-    </tr>`;
-  });
-
-  html += `</tbody>
-    <tfoot>
-      <tr><td>TOTAL A PAGAR</td><td>$${resultado.total.toFixed(2)}</td></tr>
-    </tfoot>
-  </table>`;
-
-  html += `<div class="nota-resultado">
-    <strong>Nota:</strong> Este cálculo es referencial y aplica únicamente para vehículos nuevos. 
-    Los valores pueden variar según actualizaciones normativas. Verifique siempre con las entidades competentes 
-    (SRI, ANT, municipio correspondiente) antes de realizar cualquier pago.
-  </div>`;
-
-  elResultadoContenido.innerHTML = html;
-  elResultado.classList.add('visible');
-}
-
-// ============================================================
-// Evento submit del formulario
-// ============================================================
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const datos = {
-    avaluo: parseFloat(elAvaluo.value) || 0,
-    mesCompra: parseInt(elMes.value) || 0,
-    tipo: elTipo.value,
-    ciudadKey: elCiudad.value
-  };
-
-  const resultado = calcularTotal(datos);
-
-  if (!resultado) {
-    renderResultado({ conceptos: [], total: 0 }, datos);
-    return;
-  }
-
-  renderResultado(resultado, datos);
-
-  // Scroll suave al resultado
-  elResultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-</script>
-
+        <footer>
+            <h2>ℹ️ Información Importante</h2>
+            
+            <h3>Alcance</h3>
+            <p>Esta calculadora aplica exclusivamente para <strong>vehículos nuevos</strong> en Ecuador. No incluye multas, RTV vencida ni renovación de vehículos usados.</p>
+
+            <h3>Tratamiento Tributario por Tipo de Propulsión</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>IPVM</th>
+                        <th>ICE</th>
+                        <th>Matrícula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Combustión</strong></td>
+                        <td>100% según tabla</td>
+                        <td>Variable</td>
+                        <td>Completa</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Híbrido no enchufable (HEV)</strong></td>
+                        <td>50% si motor &lt;2.500cc</td>
+                        <td>0%</td>
+                        <td>Con descuento</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Híbrido enchufable (PHEV)</strong></td>
+                        <td>50% si motor &lt;2.500cc</td>
+                        <td>0%</td>
+                        <td>Con descuento</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eléctrico 100% (EV)</strong></td>
+                        <td>Exento</td>
+                        <td>0%</td>
+                        <td>$10 fija</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="advertencia">
+                <strong>⚠️ Advertencia sobre discrepancia de fuentes:</strong>
+                <p style="margin-top: 10px;">Existen valores oficiales con diferencias entre fuentes consultadas (septiembre 2026):</p>
+                <ul style="margin-top: 10px;">
+                    <li><strong>Tasa ANT:</strong> Tarifario AMT Quito indica $34.00/$17.00 (vehículos/motos), mientras que Resolución ANT-2025-04 indica $29.00/$15.00 a nivel nacional.</li>
+                    <li><strong>SPPAT:</strong> Fuentes recientes (abril 2026) indican $30.00/$15.00, pero existen referencias anteriores de $57.16/$47.50.</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Recomendación:</strong> Verifique los valores contra el tarifario oficial vigente antes de realizar el pago.</p>
+            </div>
+
+            <h3>Fuentes Consultadas</h3>
+            <ul>
+                <li><strong>SRI:</strong> Tabla de IPVM (Impuesto a la Propiedad de Vehículos Motorizados)</li>
+                <li><strong>ANT/AMT:</strong> Tarifario de derechos de matriculación, SPPAT, RTV</li>
+                <li><strong>Ley de Fomento Productivo:</strong> Exoneraciones para vehículos eléctricos e híbridos</li>
+                <li><strong>Resolución Comex 014-2021:</strong> Aranceles de importación para híbridos (informativo, no afecta matrícula)</li>
+                <li><strong>Resolución ANT vigente (sep. 2025):</strong> Matrícula fija de $10 para vehículos eléctricos</li>
+            </ul>
+
+            <h3>Nota sobre Híbridos HEV vs PHEV</h3>
+            <p>Para efectos de IPVM de matrícula, la normativa ecuatoriana (Ley de Fomento Productivo) no distingue entre híbridos no enchufables (HEV) y enchufables (PHEV): ambos reciben el mismo tratamiento (50% de descuento si el motor de combustión es menor a 2.500cc). La diferencia real entre HEV y PHEV está en el <strong>arancel de importación</strong>: híbridos hasta 2.000cc tienen 0% de arancel, el resto entre 10% y 35%. Este arancel no afecta el cálculo de matrícula.</p>
+
+            <p style="margin-top: 20px; text-align: center; color: #666; font-size: 0.9rem;">
+                <strong>Fecha de referencia de datos:</strong> Septiembre 2026
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Configuración de valores y tablas tributarias
+        const CONFIG = {
+            // Tabla de IPVM según avalúo SRI
+            ipvm_tabla: [
+                {desde: 0,     hasta: 4000,  fraccion_basica: 0,   pct: 0.005},
+                {desde: 4001,  hasta: 8000,  fraccion_basica: 20,  pct: 0.01},
+                {desde: 8001,  hasta: 12000, fraccion_basica: 60,  pct: 0.02},
+                {desde: 12001, hasta: 16000, fraccion_basica: 140, pct: 0.03},
+                {desde: 16001, hasta: 20000, fraccion_basica: 260, pct: 0.04},
+                {desde: 20001, hasta: 24000, fraccion_basica: 420, pct: 0.05},
+                {desde: 24001, hasta: null,  fraccion_basica: 620, pct: 0.06}
+            ],
+            
+            // Descuento para híbridos (HEV y PHEV)
+            descuento_hibrido: {
+                pct_ipvm: 0.50,        // 50% de descuento
+                limite_cc: 2500        // Motor debe ser menor a 2.500cc
+            },
+            
+            // Matrícula fija para eléctricos
+            electrico: {
+                matricula_fija: 10     // $10 total desde sep. 2025
+            },
+            
+            // SPPAT - Seguro Patronal de Accidentes de Tránsito
+            sppat: {
+                particular: 30.00,
+                moto: 15.00,
+                verificado: false      // ⚠ Valor con discrepancia entre fuentes
+            },
+            
+            // RTV - Revisión Técnica Vehicular
+            rtv: {
+                liviano: 27.50,
+                publico_taxi: 55.00,
+                moto: 15.00,
+                aplica_solo_en: ["quito", "guayaquil", "cuenca"]  // Solo obligatorio en estas ciudades
+            },
+            
+            // Tasa ANT - Derecho de matriculación
+            ant_nacional_default: {
+                vehiculo: 29.00,
+                moto: 15.00,
+                verificado: false      // ⚠ Valor con discrepancia entre fuentes
+            },
+            
+            // Configuración específica por ciudad
+            ciudades: {
+                quito: {
+                    provincia: "Pichincha",
+                    rodaje_fijo: 40,
+                    fondo_vial: {particular: 18.00, publico: 20.50, moto: 9.30},
+                    ant: {vehiculo: 34.00, moto: 17.00, verificado: false},  // Tarifario AMT
+                    tasa_municipal: {liviano: 3.80, moto: 2.80}
+                },
+                ruminahui: {
+                    provincia: "Pichincha",
+                    rodaje_fijo: 40,
+                    fondo_vial: {particular: 18.00, publico: 20.50, moto: 9.30},
+                    ant: {vehiculo: 34.00, moto: 17.00, verificado: false},
+                    tasa_municipal: {liviano: 3.80, moto: 2.80}
+                },
+                guayaquil: {
+                    provincia: "Guayas",
+                    rodaje_fijo: 30,
+                    fondo_vial: {particular: 0, publico: 0, moto: 0},
+                    ant: {vehiculo: 29.00, moto: 15.00, verificado: false},
+                    tasa_municipal: {liviano: 3.80, moto: 2.80}
+                },
+                cuenca: {
+                    provincia: "Azuay",
+                    rodaje_fijo: 25,
+                    fondo_vial: {particular: 0, publico: 0, moto: 0},
+                    ant: {vehiculo: 29.00, moto: 15.00, verificado: false},
+                    tasa_municipal: {liviano: 3.80, moto: 2.80}
+                },
+                ambato: {
+                    provincia: "Tungurahua",
+                    rodaje_fijo: 0,
+                    fondo_vial: {particular: 0, publico: 0, moto: 0},
+                    ant: {vehiculo: 29.00, moto: 15.00, verificado: false},
+                    tasa_municipal: {liviano: 3.80, moto: 2.80}
+                },
+                ibarra: {
+                    provincia: "Imbabura",
+                    rodaje_fijo: 0,
+                    fondo_vial: {particular: 0, publico: 0, moto: 0},
+                    ant: {vehiculo: 29.00, moto: 15.00, verificado: false},
+                    tasa_municipal: {liviano: 3.80, moto: 2.80}
+                },
+                riobamba: {
+                    provincia: "Chimborazo",
+                    rodaje_fijo: 0,
+                    fondo_vial: {particular: 12.00, publico: 12.00, moto: 12.00},
+                    ant: {vehiculo: 29.00, moto: 15.00, verificado: false},
+                    tasa_municipal: {liviano: 3.80, moto: 2.80}
+                }
+            }
+        };
+
+        // Función para calcular IPVM base según tabla de tramos
+        function calcularIPVMBase(avaluo) {
+            if (!avaluo || avaluo <= 0) return 0;
+            
+            // Buscar el tramo correspondiente al avalúo
+            for (let tramo of CONFIG.ipvm_tabla) {
+                if (avaluo >= tramo.desde && (tramo.hasta === null || avaluo <= tramo.hasta)) {
+                    // Fórmula: fracción básica + (avaluo - desde) * porcentaje
+                    return tramo.fraccion_basica + (avaluo - tramo.desde) * tramo.pct;
+                }
+            }
+            return 0;
+        }
+
+        // Función para aplicar descuento según tipo de propulsión
+        function aplicarDescuentoPropulsion(ipvmBase, tipoPropulsion, cilindrajeCc) {
+            let ipvmFinal = ipvmBase;
+            let nota = "";
+            let advertencia = false;
+
+            // Eléctrico: exento completamente
+            if (tipoPropulsion === "electrico") {
+                return {ipvm: 0, nota: "Exento de IPVM por ser vehículo 100% eléctrico", advertencia: false};
+            }
+
+            // Híbridos (HEV y PHEV): 50% de descuento si motor < 2.500cc
+            if (tipoPropulsion === "hibrido" || tipoPropulsion === "phev") {
+                if (cilindrajeCc && cilindrajeCc < CONFIG.descuento_hibrido.limite_cc) {
+                    ipvmFinal = ipvmBase * (1 - CONFIG.descuento_hibrido.pct_ipvm);
+                    nota = `Se aplicó ${CONFIG.descuento_hibrido.pct_ipvm * 100}% de descuento en IPVM por tratarse de ${tipoPropulsion === "hibrido" ? "híbrido no enchufable" : "híbrido enchufable"} con motor de ${cilindrajeCc}cc, menor al límite de ${CONFIG.descuento_hibrido.limite_cc}cc`;
+                } else {
+                    nota = `No califica para descuento de IPVM: motor de ${cilindrajeCc || 0}cc es igual o mayor a ${CONFIG.descuento_hibrido.limite_cc}cc`;
+                    advertencia = true;
+                }
+            }
+
+            // Combustión: sin descuento
+            if (tipoPropulsion === "combustion") {
+                nota = "IPVM calculado según tabla sin descuentos (vehículo de combustión)";
+            }
+
+            return {ipvm: ipvmFinal, nota: nota, advertencia: advertencia};
+        }
+
+        // Función para prorratear IPVM según mes de compra
+        function prorratearIPVM(ipvm, mesCompra) {
+            if (!ipvm || ipvm <= 0) return 0;
+            if (!mesCompra || mesCompra < 1 || mesCompra > 12) return ipvm;
+            
+            // Enero a Marzo: 100% del valor
+            if (mesCompra <= 3) return ipvm;
+            
+            // Abril en adelante: prorrateo (12 - mes + 1) / 12
+            return ipvm * ((12 - mesCompra + 1) / 12);
+        }
+
+        // Función principal de cálculo
+        function calcularTotal(datos) {
+            const {
+                avaluo_sri,
+                tipo_propulsion,
+                cilindraje_cc,
+                mes_compra,
+                tipo_uso,
+                provincia_ciudad,
+                modo_avanzado,
+                valores_manuales
+            } = datos;
+
+            // Validación básica
+            if (!avaluo_sri || avaluo_sri <= 0) {
+                return {error: "Debe ingresar el avalúo SRI"};
+            }
+            if (!tipo_propulsion) {
+                return {error: "Debe seleccionar el tipo de propulsión"};
+            }
+            if (!mes_compra) {
+                return {error: "Debe seleccionar el mes de compra"};
+            }
+            if (!tipo_uso) {
+                return {error: "Debe seleccionar el tipo de uso"};
+            }
+            if (!provincia_ciudad) {
+                return {error: "Debe seleccionar la ciudad/provincia"};
+            }
+
+            // CASO ESPECIAL: Vehículo eléctrico 100%
+            if (tipo_propulsion === "electrico") {
+                return {
+                    total: CONFIG.electrico.matricula_fija,
+                    desglose: [
+                        {concepto: "Matrícula fija ANT", valor: CONFIG.electrico.matricula_fija}
+                    ],
+                    nota: "Vehículo eléctrico exento de IPVM, SPPAT, ANT, RTV y rodaje. Aplica matrícula fija de $10 según resolución ANT vigente desde septiembre 2025.",
+                    advertencia: false
+                };
+            }
+
+            // Validación para híbridos: cilindraje obligatorio
+            if ((tipo_propulsion === "hibrido" || tipo_propulsion === "phev") && (!cilindraje_cc || cilindraje_cc <= 0)) {
+                return {error: "Para vehículos híbridos debe ingresar el cilindraje en cc"};
+            }
+
+            // Obtener configuración de la ciudad
+            const ciudadConfig = CONFIG.ciudades[provincia_ciudad];
+            if (!ciudadConfig) {
+                return {error: "Configuración de ciudad no encontrada"};
+            }
+
+            // Calcular IPVM
+            const ipvmBase = calcularIPVMBase(avaluo_sri);
+            const resultadoDescuento = aplicarDescuentoPropulsion(ipvmBase, tipo_propulsion, cilindraje_cc);
+            const ipvmProrrateado = prorratearIPVM(resultadoDescuento.ipvm, mes_compra);
+
+            // Determinar valores de rubros (modo avanzado o default)
+            let ant, sppat, rtv, rodaje, fondo_vial, tasa_municipal;
+
+            if (modo_avanzado && valores_manuales) {
+                ant = valores_manuales.ant !== undefined ? valores_manuales.ant : 
+                      (tipo_uso === "moto" ? ciudadConfig.ant.moto : ciudadConfig.ant.vehiculo);
+                sppat = valores_manuales.sppat !== undefined ? valores_manuales.sppat :
+                        (tipo_uso === "moto" ? CONFIG.sppat.moto : CONFIG.sppat.particular);
+                rtv = valores_manuales.rtv !== undefined ? valores_manuales.rtv :
+                      (tipo_uso === "moto" ? CONFIG.rtv.moto : 
+                       tipo_uso === "publico" ? CONFIG.rtv.publico_taxi : CONFIG.rtv.liviano);
+                rodaje = valores_manuales.rodaje !== undefined ? valores_manuales.rodaje : ciudadConfig.rodaje_fijo;
+                fondo_vial = valores_manuales.fondo_vial !== undefined ? valores_manuales.fondo_vial :
+                             ciudadConfig.fondo_vial[tipo_uso === "publico" ? "publico" : tipo_uso];
+                tasa_municipal = valores_manuales.tasa_municipal !== undefined ? valores_manuales.tasa_municipal :
+                                 (tipo_uso === "moto" ? ciudadConfig.tasa_municipal.moto : ciudadConfig.tasa_municipal.liviano);
+            } else {
+                ant = tipo_uso === "moto" ? ciudadConfig.ant.moto : ciudadConfig.ant.vehiculo;
+                sppat = tipo_uso === "moto" ? CONFIG.sppat.moto : CONFIG.sppat.particular;
+                rtv = tipo_uso === "moto" ? CONFIG.rtv.moto : 
+                      tipo_uso === "publico" ? CONFIG.rtv.publico_taxi : CONFIG.rtv.liviano;
+                rodaje = ciudadConfig.rodaje_fijo;
+                fondo_vial = ciudadConfig.fondo_vial[tipo_uso === "publico" ? "publico" : tipo_uso];
+                tasa_municipal = tipo_uso === "moto" ? ciudadConfig.tasa_municipal.moto : ciudadConfig.tasa_municipal.liviano;
+            }
+
+            // RTV solo aplica en Quito, Guayaquil y Cuenca
+            if (!CONFIG.rtv.aplica_solo_en.includes(provincia_ciudad)) {
+                rtv = 0;
+            }
+
+            // Construir desglose
+            const desglose = [];
+            
+            if (ipvmProrrateado > 0) {
+                desglose.push({concepto: "IPVM (Impuesto a la Propiedad de Vehículos Motorizados)", valor: ipvmProrrateado});
+            }
+            
+            if (rodaje > 0) {
+                desglose.push({concepto: "Rodaje Municipal", valor: rodaje});
+            }
+            
+            if (fondo_vial > 0) {
+                desglose.push({concepto: "Fondo Vial", valor: fondo_vial});
+            }
+            
+            desglose.push({concepto: "SPPAT (Seguro Patronal de Accidentes de Tránsito)", valor: sppat});
+            desglose.push({concepto: "Tasa ANT (Derecho de Matriculación)", valor: ant});
+            
+            if (rtv > 0) {
+                desglose.push({concepto: "RTV (Revisión Técnica Vehicular)", valor: rtv});
+            }
+            
+            if (tasa_municipal > 0) {
+                desglose.push({concepto: "Tasa Municipal", valor: tasa_municipal});
+            }
+
+            const total = desglose.reduce((sum, item) => sum + item.valor, 0);
+
+            return {
+                total: total,
+                desglose: desglose,
+                nota: resultadoDescuento.nota,
+                advertencia: resultadoDescuento.advertencia
+            };
+        }
+
+        // Función para formatear valores en USD
+        function formatearUSD(valor) {
+            return `$${valor.toFixed(2)}`;
+        }
+
+        // Función principal llamada desde el botón
+        function calcularMatricula() {
+            // Obtener valores del formulario
+            const avaluo_sri = parseFloat(document.getElementById("avaluo_sri").value);
+            const tipo_propulsion = document.getElementById("tipo_propulsion").value;
+            const cilindraje_cc = parseFloat(document.getElementById("cilindraje_cc").value);
+            const mes_compra = parseInt(document.getElementById("mes_compra").value);
+            const tipo_uso = document.getElementById("tipo_uso").value;
+            const provincia_ciudad = document.getElementById("provincia_ciudad").value;
+            const modo_avanzado = document.getElementById("modo_avanzado").checked;
+
+            // Valores manuales si modo avanzado está activo
+            let valores_manuales = {};
+            if (modo_avanzado) {
+                if (document.getElementById("editar_ant").checked) {
+                    valores_manuales.ant = parseFloat(document.getElementById("ant_manual").value);
+                }
+                if (document.getElementById("editar_sppat").checked) {
+                    valores_manuales.sppat = parseFloat(document.getElementById("sppat_manual").value);
+                }
+                if (document.getElementById("editar_rtv").checked) {
+                    valores_manuales.rtv = parseFloat(document.getElementById("rtv_manual").value);
+                }
+                if (document.getElementById("editar_rodaje").checked) {
+                    valores_manuales.rodaje = parseFloat(document.getElementById("rodaje_manual").value);
+                }
+                if (document.getElementById("editar_fondo_vial").checked) {
+                    valores_manuales.fondo_vial = parseFloat(document.getElementById("fondo_vial_manual").value);
+                }
+                if (document.getElementById("editar_tasa_municipal").checked) {
+                    valores_manuales.tasa_municipal = parseFloat(document.getElementById("tasa_municipal_manual").value);
+                }
+            }
+
+            // Calcular
+            const resultado = calcularTotal({
+                avaluo_sri,
+                tipo_propulsion,
+                cilindraje_cc,
+                mes_compra,
+                tipo_uso,
+                provincia_ciudad,
+                modo_avanzado,
+                valores_manuales
+            });
+
+            // Mostrar resultado
+            mostrarResultado(resultado);
+        }
+
+        // Función para mostrar el resultado en la UI
+        function mostrarResultado(resultado) {
+            const resultadoCard = document.getElementById("resultado_card");
+            const contenido = document.getElementById("resultado_contenido");
+
+            if (resultado.error) {
+                contenido.innerHTML = `<div class="advertencia"><strong>Error:</strong> ${resultado.error}</div>`;
+                resultadoCard.classList.add("active");
+                return;
+            }
+
+            let html = '<table class="resultado-tabla">';
+            html += '<thead><tr><th>Concepto</th><th>Valor</th></tr></thead>';
+            html += '<tbody>';
+
+            resultado.desglose.forEach(item => {
+                html += `<tr><td>${item.concepto}</td><td>${formatearUSD(item.valor)}</td></tr>`;
+            });
+
+            html += `<tr><td><strong>TOTAL A PAGAR</strong></td><td><strong>${formatearUSD(resultado.total)}</strong></td></tr>`;
+            html += '</tbody></table>';
+
+            if (resultado.nota) {
+                html += `<div class="nota-explicativa"><strong>📝 Nota:</strong> ${resultado.nota}</div>`;
+            }
+
+            if (resultado.advertencia) {
+                html += `<div class="advertencia"><strong>⚠️ Advertencia:</strong> El vehículo no califica para descuento de IPVM.</div>`;
+            }
+
+            // Advertencia sobre valores no verificados
+            html += `<div class="advertencia">
+                <strong>⚠️ Importante:</strong> Algunos valores utilizados (ANT, SPPAT) tienen discrepancia entre fuentes oficiales. 
+                Verifique contra el tarifario vigente antes de realizar el pago.
+            </div>`;
+
+            contenido.innerHTML = html;
+            resultadoCard.classList.add("active");
+
+            // Scroll al resultado
+            resultadoCard.scrollIntoView({behavior: "smooth", block: "start"});
+        }
+
+        // Lógica de UI: mostrar/ocultar campos según tipo de propulsión
+        document.getElementById("tipo_propulsion").addEventListener("change", function() {
+            const tipo = this.value;
+            const cilindrajeGroup = document.getElementById("cilindraje_group");
+            const cilindrajeInput = document.getElementById("cilindraje_cc");
+
+            if (tipo === "hibrido" || tipo === "phev") {
+                cilindrajeGroup.style.display = "block";
+                cilindrajeInput.required = true;
+            } else {
+                cilindrajeGroup.style.display = "none";
+                cilindrajeInput.required = false;
+                cilindrajeInput.value = "";
+            }
+        });
+
+        // Lógica de UI: modo avanzado
+        document.getElementById("modo_avanzado").addEventListener("change", function() {
+            const panel = document.getElementById("advanced_panel");
+            if (this.checked) {
+                panel.classList.add("active");
+                // Autocompletar con valores de la ciudad seleccionada
+                autocompletarModoAvanzado();
+            } else {
+                panel.classList.remove("active");
+            }
+        });
+
+        // Lógica de UI: autocompletar valores al cambiar ciudad
+        document.getElementById("provincia_ciudad").addEventListener("change", function() {
+            if (document.getElementById("modo_avanzado").checked) {
+                autocompletarModoAvanzado();
+            }
+        });
+
+        // Lógica de UI: autocompletar valores al cambiar tipo de uso
+        document.getElementById("tipo_uso").addEventListener("change", function() {
+            if (document.getElementById("modo_avanzado").checked) {
+                autocompletarModoAvanzado();
+            }
+        });
+
+        // Función para autocompletar campos del modo avanzado
+        function autocompletarModoAvanzado() {
+            const ciudad = document.getElementById("provincia_ciudad").value;
+            const tipoUso = document.getElementById("tipo_uso").value;
+
+            if (!ciudad || !tipoUso) return;
+
+            const ciudadConfig = CONFIG.ciudades[ciudad];
+            if (!ciudadConfig) return;
+
+            // ANT
+            if (!document.getElementById("editar_ant").checked) {
+                document.getElementById("ant_manual").value = tipoUso === "moto" ? 
+                    ciudadConfig.ant.moto : ciudadConfig.ant.vehiculo;
+            }
+
+            // SPPAT
+            if (!document.getElementById("editar_sppat").checked) {
+                document.getElementById("sppat_manual").value = tipoUso === "moto" ? 
+                    CONFIG.sppat.moto : CONFIG.sppat.particular;
+            }
+
+            // RTV
+            if (!document.getElementById("editar_rtv").checked) {
+                const aplicaRTV = CONFIG.rtv.aplica_solo_en.includes(ciudad);
+                if (aplicaRTV) {
+                    document.getElementById("rtv_manual").value = tipoUso === "moto" ? CONFIG.rtv.moto :
+                        tipoUso === "publico" ? CONFIG.rtv.publico_taxi : CONFIG.rtv.liviano;
+                } else {
+                    document.getElementById("rtv_manual").value = 0;
+                }
+            }
+
+            // Rodaje
+            if (!document.getElementById("editar_rodaje").checked) {
+                document.getElementById("rodaje_manual").value = ciudadConfig.rodaje_fijo;
+            }
+
+            // Fondo vial
+            if (!document.getElementById("editar_fondo_vial").checked) {
+                const tipoFondoVial = tipoUso === "publico" ? "publico" : tipoUso;
+                document.getElementById("fondo_vial_manual").value = ciudadConfig.fondo_vial[tipoFondoVial];
+            }
+
+            // Tasa municipal
+            if (!document.getElementById("editar_tasa_municipal").checked) {
+                document.getElementById("tasa_municipal_manual").value = tipoUso === "moto" ? 
+                    ciudadConfig.tasa_municipal.moto : ciudadConfig.tasa_municipal.liviano;
+            }
+        }
+    </script>
 </body>
 </html>
